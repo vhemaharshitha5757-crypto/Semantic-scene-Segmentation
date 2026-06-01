@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+*.pyc
+
+predictions/
+train_stats/
+
+*.png
+*.jpg
+
+Offroad_Segmentation_Training_Dataset/
+Offroad_Segmentation_testImages/
