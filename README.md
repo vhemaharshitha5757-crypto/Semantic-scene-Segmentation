@@ -313,8 +313,8 @@ on the validation dataset.
 
 ---
 
-# Authors
+# Author
 
-MRDU Hackathon Team
+VEERAMANENI HEMA HARSHITA
 
 Semantic Segmentation of Off-Road Environments using DINOv2 and ConvNeXt-style Decoding.
