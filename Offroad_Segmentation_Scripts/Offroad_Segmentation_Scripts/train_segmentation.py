@@ -550,8 +550,8 @@ def main():
     os.makedirs(output_dir, exist_ok=True)
 
     # Dataset paths (relative to script location)
-    data_dir = os.path.join(script_dir, '..', 'Offroad_Segmentation_Training_Dataset', 'train')
-    val_dir  = os.path.join(script_dir, '..', 'Offroad_Segmentation_Training_Dataset', 'val')
+    data_dir = os.path.join(script_dir, '..', '..', 'Offroad_Segmentation_Training_Dataset', 'train')
+    val_dir  = os.path.join(script_dir, '..', '..', 'Offroad_Segmentation_Training_Dataset', 'val')
 
     # Joint transforms (spatial ops applied identically to image + mask)
     train_transform = JointTransform(image_size=(h, w))

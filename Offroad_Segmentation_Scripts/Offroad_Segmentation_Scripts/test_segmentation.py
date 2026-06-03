@@ -16,6 +16,7 @@ import cv2
 import os
 import argparse
 from tqdm import tqdm
+from torchvision.transforms import functional as TF
 
 # Set matplotlib to non-interactive backend
 plt.switch_backend('Agg')
@@ -122,8 +123,12 @@ class MaskDataset(Dataset):
 
         if self.transform:
             image = self.transform(image)
-            mask = self.mask_transform(mask) * 255
-
+        mask = TF.resize(
+            mask,
+            [266,476],
+            interpolation=TF.InterpolationMode.NEAREST
+        )
+        mask = torch.from_numpy(np.array(mask)).long()
         return image, mask, data_id
 class ResidualBlock(nn.Module):
     """Depthwise-separable residual block (ConvNeXt-style)."""
@@ -447,7 +452,7 @@ def main():
             logits = classifier(output.to(device))
             outputs = F.interpolate(logits, size=imgs.shape[2:], mode="bilinear", align_corners=False)
 
-            labels_squeezed = labels.squeeze(dim=1).long()
+            labels_squeezed = labels.long()
             predicted_masks = torch.argmax(outputs, dim=1)
 
             # Calculate metrics
